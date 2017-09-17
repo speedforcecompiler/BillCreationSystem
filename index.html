@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer Bill Management</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- custom stylesheet -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- For responsive Design -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Enterprise</a>
+			</div>
+				<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Enter Publications</a></li>
+				<li><a href="#">Page 2</a></li>
+				<li><a href="#">Page 3</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row myHeader">
+			<h1>Welcome to Customer Bill Management Portal</h1>
+		</div><!-- 
+		<div class="row">
+			Create your Bill on this page.
+		</div> -->
+		<br><br><br>
+
+		<div class="row">
+			<div class="col-sm-offset-2 col-sm-4">
+				<h4>Search Client name here first : </h4>
+			</div>
+			<form method="post" action="">
+				<div class="col-sm-4 form-group">
+					<input type="text" name="autocomplete" class="form-control" placeholder="Client Name">
+				</div>
+			</form>
+			<div class="col-sm-offset-6 col-sm-4">
+				<p style="color: gray">(If Client Name is not found enter the details below)</p>
+			</div>
+		</div>
+		<br><br><br>	
+
+		<!-- register form starts here	 -->
+		<form method="post" action="php/register.php">	
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="form-group">
+						<input type="text" name="billnumber" class="form-control" placeholder="Bill Number">
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div class="form-group">
+						<input type="text" name="day" class="form-control" placeholder="DD">
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div class="form-group">
+						<input type="text" name="month" class="form-control" placeholder="MM">
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<input type="text" name="year" class="form-control" placeholder="YYYY">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="form-group">
+						<input type="text" name="clientname" class="form-control" placeholder="Client Name">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-2 form-group">
+					<label for="clientaddress"><h4>Client Address</h4></label>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<textarea name="clientaddress" class="form-control" rows="3">
+						</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="form-group">
+						<input type="text" name="gstnumber" class="form-control" placeholder="GST Number">
+						<p style="color: gray">(Optional)</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class=" col-sm-offset-2 col-sm-4 form-group">
+					 <input type="submit" name="registration" class="form-control submitbtn" value="CREATE BILL">
+				</div>
+			</div>
+		</form>
+		<!-- register form ends here -->
+	</div>
+
+</body>
+</html>
