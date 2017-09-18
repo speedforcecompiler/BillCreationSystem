@@ -49,9 +49,37 @@
 			</div>
 			<form method="post" action="">
 				<div class="col-sm-4 form-group">
-					<input type="text" name="autocomplete" class="form-control" placeholder="Client Name">
+					<input list="names" type="text" name="autocomplete" class="form-control" placeholder="Client Name" onblur="getName(this)">
+					<datalist id="names">
+						<option>Sohail</option>
+						<option>Harry</option>
+						<option>Potter</option>
+						<option>Gandu</option>
+						<option>BC</option>
+						<option>MC</option>
+					</datalist>
 				</div>
 			</form>
+			<script type="text/javascript">
+				function getName(el) {
+					var xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function(){
+						if (this.readyState == 4 && this.status == 200) {
+							console.log(this.response);
+							var json = JSON.parse(this.response);
+							document.getElementById('bill').value = json.billnumber;
+							document.getElementById('day').value = json.day;
+							document.getElementById('month').value = json.month;
+							document.getElementById('year').value = json.year;
+							document.getElementById('clientname').value = json.clientname;
+							document.getElementById('clientaddress').innerHTML = json.clientaddr;
+							document.getElementById('gstnumber').value = json.gstnumber;
+						}
+					}
+					xhr.open("GET", "php/details.php?name="+el.value,true);
+					xhr.send();
+				}
+			</script>
 			<div class="col-sm-offset-6 col-sm-4">
 				<p style="color: gray">(If Client Name is not found enter the details below)</p>
 			</div>
@@ -63,29 +91,29 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-2">
 					<div class="form-group">
-						<input type="text" name="billnumber" class="form-control" placeholder="Bill Number">
+						<input type="text" id="bill" name="billnumber" class="form-control" placeholder="Bill Number">
 					</div>
 				</div>
 				<div class="col-sm-1">
 					<div class="form-group">
-						<input type="text" name="day" class="form-control" placeholder="DD">
+						<input type="text" id="day" name="day" class="form-control" placeholder="DD">
 					</div>
 				</div>
 				<div class="col-sm-1">
 					<div class="form-group">
-						<input type="text" name="month" class="form-control" placeholder="MM">
+						<input type="text" id="month" name="month" class="form-control" placeholder="MM">
 					</div>
 				</div>
 				<div class="col-sm-2">
 					<div class="form-group">
-						<input type="text" name="year" class="form-control" placeholder="YYYY">
+						<input type="text" id="year" name="year" class="form-control" placeholder="YYYY">
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-2">
 					<div class="form-group">
-						<input type="text" name="clientname" class="form-control" placeholder="Client Name">
+						<input type="text" id="clientname" name="clientname" class="form-control" placeholder="Client Name">
 					</div>
 				</div>
 			</div>
@@ -95,7 +123,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
-						<textarea name="clientaddress" class="form-control" rows="3">
+						<textarea id="clientaddress" name="clientaddress" class="form-control" rows="3">
 						</textarea>
 					</div>
 				</div>
@@ -103,7 +131,7 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-2">
 					<div class="form-group">
-						<input type="text" name="gstnumber" class="form-control" placeholder="GST Number">
+						<input type="text" id="gstnumber" name="gstnumber" class="form-control" placeholder="GST Number">
 						<p style="color: gray">(Optional)</p>
 					</div>
 				</div>

@@ -6,3 +6,8 @@
 	background-color: green;
 	color: white;
 }
+
+-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

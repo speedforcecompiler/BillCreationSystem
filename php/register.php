@@ -21,6 +21,8 @@
 	$stmt->bindParam(6,$gst,PDO::PARAM_STR);
 
 	$stmt->execute();
-	
-	header("location:../index.html");
 ?>
+	<script type="text/javascript">
+		alert("Registration Successfull");
+		location.href="../index.html";
+	</script>
