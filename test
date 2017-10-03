@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer Bill Management</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- custom stylesheet -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- For responsive Design -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Enterprise</a>
+			</div>
+				<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="publications.php">Enter Publications</a></li>
+				<li><a href="#">Page 2</a></li>
+				<li><a href="#">Page 3</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row myHeader">
+			<h1>Welcome to Customer Bill Management Portal</h1>
+		</div><!-- 
+		<div class="row">
+			Create your Bill on this page.
+		</div> -->
+		<br><br><br>
+
+		<div class="row">
+			<div class="col-sm-offset-2 col-sm-2">
+				<h4>Search Client name</h4>
+			</div>
+			<script type="text/javascript">
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange=function(){
+					if(this.readyState == 4 && this.status == 200){
+						console.log(this.response);
+						var json1 = JSON.parse(this.response);
+						console.log(json1[0]['clientname']);
+						// console.log(json1.clientname);
+					}
+				}
+				xhttp.open("GET","php/data.php",true);
+				xhttp.send();
+			</script>
+			<form method="post" action="">
+				<div class="col-sm-4 form-group">
+					<input list="names" id="name" type="text" name="autocomplete" class="form-control" placeholder="Client Name" >
+					<datalist id="names">
+						<option>Sohail</option>
+						<option>Harry</option>
+						<option>Potter</option>
+						<option></option>
+						<option>BC</option>
+						<option>MC</option>
+					</datalist>
+				</div>
+			</form>
+				<div class="col-sm-2 form-group">
+					<button onclick="getName(document.getElementById('name'))" class="btn btn-primary">SEARCH</button>
+				</div>
+			<script type="text/javascript">
+				function getName(el) {
+					var xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function(){
+						if (this.readyState == 4 && this.status == 200) {
+							console.log(this.response);
+							var json = JSON.parse(this.response);
+							document.getElementById('bill').value = json.billnumber;
+							document.getElementById('day').value = json.day;
+							document.getElementById('month').value = json.month;
+							document.getElementById('year').value = json.year;
+							document.getElementById('clientname').value = json.clientname;
+							document.getElementById('clientaddress').innerHTML = json.clientaddr;
+							document.getElementById('gstnumber').value = json.gstnumber;
+						}
+					}
+					xhr.open("GET", "php/details.php?name="+el.value,true);
+					xhr.send();
+				}
+			</script>
+			<div class="col-sm-offset-4 col-sm-4">
+				<p style="color: gray">(If Client Name is not found enter the details below)</p>
+			</div>
+		</div>
+		<br><br><br>	
+
+		<!-- register form starts here	 -->
+		<form method="post" action="php/register.php">	
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="form-group">
+						<input type="text" id="bill" name="billnumber" class="form-control" placeholder="Bill Number">
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div class="form-group">
+						<input type="text" id="day" name="day" class="form-control" placeholder="DD">
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<div class="form-group">
+						<input type="text" id="month" name="month" class="form-control" placeholder="MM">
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<input type="text" id="year" name="year" class="form-control" placeholder="YYYY">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="form-group">
+						<input type="text" id="clientname" name="clientname" class="form-control" placeholder="Client Name">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-2 form-group">
+					<label for="clientaddress"><h4>Client Address</h4></label>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<textarea id="clientaddress" name="clientaddress" class="form-control" rows="3">
+						</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="form-group">
+						<input type="text" id="gstnumber" name="gstnumber" class="form-control" placeholder="GST Number">
+						<p style="color: gray">(Optional)</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class=" col-sm-offset-2 col-sm-4 form-group">
+					 <input type="submit" name="registration" class="form-control submitbtn" value="CREATE BILL">
+				</div>
+			</div>
+		</form>
+		<!-- register form ends here -->
+	</div>
+
+</body>
+</html>

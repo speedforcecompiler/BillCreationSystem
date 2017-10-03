@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Customer Bill Management</title>
+	<title>RELEASE ORDER</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -16,134 +16,355 @@
 	<!-- For responsive Design -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 <body>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Enterprise</a>
 			</div>
 				<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Enter Publications</a></li>
-				<li><a href="#">Page 2</a></li>
-				<li><a href="#">Page 3</a></li>
+				<li class="active"><a href="index.html">HOME</a></li>
+				<li><a href="publications.php">PUBLICATIONS</a></li>
+				<li><a href="clients.php">CLIENT INFORMATION</a></li>
+				<li><a href="format.php">RELEASE ORDER</a></li>
+				<!-- <li><a href="#">Page 3</a></li> -->
 			</ul>
 		</div>
 	</nav>
+	<br><br><br>
+
+		<!-- CONTAINER STARTS -->
 
 	<div class="container">
-		<div class="row myHeader">
-			<h1>Welcome to Customer Bill Management Portal</h1>
-		</div><!-- 
-		<div class="row">
-			Create your Bill on this page.
-		</div> -->
-		<br><br><br>
-
-		<div class="row">
-			<div class="col-sm-offset-2 col-sm-4">
-				<h4>Search Client name here first : </h4>
+		<!-- HEADER STARTS -->
+		<div>
+			<h1>RELEASE ORDER CREATION</h1>
+		</div>
+		<!-- HEADER ENDS -->
+	<br>
+		<!-- FORM STRATS	 -->
+		<form method="POST" action="php/release_order.php">
+			<div class="row">
+				<div class="col-sm-5">
+					<h4>ADVERTISEMENT MANAGER</h4>
+				</div>
 			</div>
-			<form method="post" action="">
-				<div class="col-sm-4 form-group">
-					<input list="names" type="text" name="autocomplete" class="form-control" placeholder="Client Name" onblur="getName(this)">
-					<datalist id="names">
-						<option>Sohail</option>
-						<option>Harry</option>
-						<option>Potter</option>
-						<option>Gandu</option>
-						<option>BC</option>
-						<option>MC</option>
+			<div class="row">
+				<div class="col-sm-5 form-group">
+					<input list="publicators" id="publicator_val" class="form-control">
+					<datalist id="publicators">
+						
 					</datalist>
 				</div>
-			</form>
-			<script type="text/javascript">
-				function getName(el) {
-					var xhr = new XMLHttpRequest();
-					xhr.onreadystatechange = function(){
-						if (this.readyState == 4 && this.status == 200) {
-							console.log(this.response);
-							var json = JSON.parse(this.response);
-							document.getElementById('bill').value = json.billnumber;
-							document.getElementById('day').value = json.day;
-							document.getElementById('month').value = json.month;
-							document.getElementById('year').value = json.year;
-							document.getElementById('clientname').value = json.clientname;
-							document.getElementById('clientaddress').innerHTML = json.clientaddr;
-							document.getElementById('gstnumber').value = json.gstnumber;
-						}
-					}
-					xhr.open("GET", "php/details.php?name="+el.value,true);
-					xhr.send();
-				}
-			</script>
-			<div class="col-sm-offset-6 col-sm-4">
-				<p style="color: gray">(If Client Name is not found enter the details below)</p>
 			</div>
-		</div>
-		<br><br><br>	
-
-		<!-- register form starts here	 -->
-		<form method="post" action="php/register.php">	
 			<div class="row">
-				<div class="col-sm-4 col-sm-offset-2">
-					<div class="form-group">
-						<input type="text" id="bill" name="billnumber" class="form-control" placeholder="Bill Number">
-					</div>
+				<div class="col-sm-5 form-group" id="select_pub">
 				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-5">
+					<div class="form-group">
+						<input type="text" name="ro_number" id="ro_number1" placeholder="ro number" style="text-transform: uppercase;" class="form-control">
+					</div>	
+				</div>
+				<div class="col-sm-3">
+					<input type="text" name="ro_date" class="form-control" style="text-transform: uppercase;" placeholder="ro date">					
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-5">
+					<input type="text" name="client_name" class="form-control" style="text-transform: uppercase;" placeholder="client name">	
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-5">
+					<h4>ADVERTISEMENT SPECIFICATION</h4>	
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-5">
+					<h5>NATURE OF ADVERTISEMENT</h5>
+					<div class="checkbox">
+						<label><input type="checkbox" name="nature[]" value="display">DISPLAY</label>
+					</div>	
+					<div class="checkbox">
+						<label><input type="checkbox" name="nature[]" value="display">CLASSIFIED DISPLAY</label>
+					</div>	
+					<div class="checkbox">
+						<label><input type="checkbox" name="nature[]" value="display">CLASSIFIED LINEAGE</label>
+					</div>	
+					<div class="checkbox">
+						<label><input type="checkbox" name="nature[]" value="display">APPOINTMENT</label>
+					</div>	
+					<div class="checkbox">
+						<label><input type="checkbox" name="nature[]" value="display">OTHERS</label>
+					</div>	
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-5 form-group">
+					<h5>CAPTIONS</h5>
+					<textarea class="form-control" rows="3" name="caption"></textarea>
+				</div>
+			</div>
+			<br>
+			<div class="row">
 				<div class="col-sm-1">
-					<div class="form-group">
-						<input type="text" id="day" name="day" class="form-control" placeholder="DD">
-					</div>
+					<h5>SIZE</h5>
 				</div>
-				<div class="col-sm-1">
-					<div class="form-group">
-						<input type="text" id="month" name="month" class="form-control" placeholder="MM">
-					</div>
-				</div>
-				<div class="col-sm-2">
-					<div class="form-group">
-						<input type="text" id="year" name="year" class="form-control" placeholder="YYYY">
-					</div>
+				<div class="col-sm-3 form-group">
+					<select name="unit" class="form-control" id="unit">
+						<option value="null">SELECT UNIT</option>
+						<option value="area">AREA</option>
+						<option value="lines">LINES</option>
+						<option value="words">WORDS</option>
+					</select>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-2">
-					<div class="form-group">
-						<input type="text" id="clientname" name="clientname" class="form-control" placeholder="Client Name">
+				<div class="row" id="area" style="display: none;">
+					<div class="col-sm-3 form-group">
+						<input type="text" name="hieght" id="hieght1" placeholder="Hieght (in cm)" style="text-transform: uppercase;" class="form-control">
+					</div>
+					<div class="col-sm-3 form-group">
+						<input type="text" name="width" id="width1" placeholder="width (in cm)" style="text-transform: uppercase;" class="form-control">
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-offset-2 col-sm-2 form-group">
-					<label for="clientaddress"><h4>Client Address</h4></label>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<textarea id="clientaddress" name="clientaddress" class="form-control" rows="3">
-						</textarea>
+				<div class="row" id="lines" style="display: none">
+					<div class="col-sm-4 form-group">
+						<input type="text" name="lines" id="lines1" placeholder="number of lines" style="text-transform: uppercase;" class="form-control">
+					</div>
+					<div class="col-sm-4 form-group">
+						<input type="text" name="extra_lines" id="extra_lines1" placeholder="Extra number of lines" style="text-transform: uppercase;" class="form-control" value="0">
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-2">
-					<div class="form-group">
-						<input type="text" id="gstnumber" name="gstnumber" class="form-control" placeholder="GST Number">
-						<p style="color: gray">(Optional)</p>
+				<div class="row" id="words" style="display: none">
+					<div class="col-sm-4 form-group">
+						<input type="text" name="words" id="words1" placeholder="number of words" style="text-transform: uppercase;" class="form-control">
+					</div>
+					<div class="col-sm-4 form-group">
+						<input type="text" name="extra_words" id="extra_words1" placeholder="extra number of words" style="text-transform: uppercase;" class="form-control" value="0">
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class=" col-sm-offset-2 col-sm-4 form-group">
-					 <input type="submit" name="registration" class="form-control submitbtn" value="CREATE BILL">
+				<br>
+				<div class="row">
+					<div class="col-sm-3 form-group">
+						<input type="text" name="rate" id="rate1" placeholder="rate" style="text-transform: uppercase;" class="form-control">
+					</div>
+					<div class="col-sm-1">
+						<h4><span id="rate_unit"></span></h4>
+					</div>
+					<div class="col-sm-3 form-group">
+						<input type="text" name="rate" id="extra_rate1" placeholder="extra rate" style="text-transform: uppercase;" class="form-control" value="0">
+					</div>
+					<div class="col-sm-1">
+						<h4><span id="rate_unit2"></span></h4>
+					</div>
 				</div>
-			</div>
+				<br>
+				<div class="row">
+					<h4>COST</h4>
+				</div>
+				<div class="row" id="cost" style="display: none;">
+					<div class="col-sm-1">
+						<h6>STANDARD COST</h6>
+					</div>
+					<div class="col-sm-3 form-group">
+						<input type="text" id="initial_cost" name="init_cost" class="form-control" disabled>
+					</div>
+					<div class="col-sm-1">
+						<h6>EXTRA COST</h6>
+					</div>
+					<div class="col-sm-3 form-group">
+						<input type="text" id="extra_cost" name="ext_cost" class="form-control" disabled> 
+					</div>
+					<div class="col-sm-1">
+						<h6>TOTAL COST</h6>
+					</div>
+					<div class="col-sm-3 form-group">
+						<input type="text" id="total_cost" name="tot_cost" class="form-control" disabled>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-5 form-group">
+						<h5>POSITION</h5>
+						<textarea class="form-control" rows="3" name="position" id="position"></textarea>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-5">
+						<h4>DATES OF INSERTION</h4>
+						<h6>Select the dates from below</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<h5>YEAR</h5>
+					</div>
+					<div class="col-sm-3">
+						<h5>MONTH</h5>
+					</div>
+					<div class="col-sm-3">
+						<h5>DAY</h5>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-5 form-group">
+						<h5>TAKE CARE</h5>
+						<textarea class="form-control" rows="3" name="take_care"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5">
+						<input type="submit" name="submit_ro" value="RELEASE ORDER" class="form-control btn btn-info">
+					</div>
+				</div>
 		</form>
-		<!-- register form ends here -->
+		<br><br><br>
 	</div>
 
+			<!-- CONTAINER ENDS -->
+
 </body>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$.ajax({
+			url : "php/prerequisite.php",
+			method : "GET",
+			dataType : "JSON",
+			success : function(data){
+				final_ro = parseFloat(data.ro_number)+1;
+				$("#ro_number1").val(final_ro);
+				$("#ro_number1").prop("disabled",true);
+			}
+
+		})
+	});
+
+
+	$(document).ready(function(){
+		$("#publicator_val").focus(function (){
+			$("#publicator_val").val("");
+		});
+	});
+	$(document).ready(function(){
+		$("#publicator_val").change(function(){
+			var element_id = $("#publicator_val").val();
+			console.log(element_id);
+			var element_id_final = "#"+element_id;
+			var checkbox = element_id_final+"_val"
+			console.log(checkbox);
+			$(element_id_final).css("display","block");
+			$(checkbox).prop("checked",true);
+		});
+	});
+
+	$(document).ready(function(){
+		$("#position").focus(function(){
+			var unit = $("#unit").val();
+		if (unit == "area"){
+			var length = parseFloat($("#hieght1").val());
+			var width = parseFloat($("#width1").val());
+			var area = length*width;
+			var rate = parseFloat($("#rate1").val());
+			var cost = area*rate;
+			$("#initial_cost").val(cost);
+			$("#extra_cost").val("0");
+			$("#total_cost").val(cost);
+		}else if(unit == "lines"){
+			var lines = parseFloat($("#lines1").val());
+			var extra_lines = parseFloat($("#extra_lines1").val());
+			var rate = parseFloat($("#rate1").val());
+			var extra_rate = parseFloat($("#extra_rate1").val());
+			console.log(words+""+extra_words+""+rate+""+extra_rate);
+			var init_cost = rate;
+			var extra_cost = extra_lines*extra_rate;
+			var total_cost = init_cost+extra_cost;
+			console.log(init_cost+""+extra_cost+""+total_cost);
+			$("#initial_cost").val(init_cost);
+			$("#extra_cost").val(extra_cost);
+			$("#total_cost").val(total_cost);
+		}else if(unit == "words"){
+			var words = parseFloat($("#words1").val());
+			var extra_words = parseFloat($("#extra_words1").val());
+			var rate = parseFloat($("#rate1").val());
+			var extra_rate = parseFloat($("#extra_rate1").val());
+			console.log(words+""+extra_words+""+rate+""+extra_rate);
+			var init_cost = rate;
+			var extra_cost = extra_words*extra_rate;
+			var total_cost = init_cost+extra_cost;
+			console.log(init_cost+""+extra_cost+""+total_cost);
+			$("#initial_cost").val(init_cost);
+			$("#extra_cost").val(extra_cost);
+			$("#total_cost").val(total_cost);
+		}
+		$("#cost").css("display","block");
+		});
+	});
+	$(document).ready(function(){
+		$.ajax({
+			url : "php/pubdata.php",
+			method : "POST",
+			dataType : "JSON",
+			success : function(data){
+				for(a=0;a<data.length;a++)
+				{
+					console.log(data[a]['ID']+":"+data[a]['pub_name']);
+					var select = "<div class='checkbox' id='"+("P_"+data[a]['ID'])+"' style='display:none'><label><input type='checkbox' name='publisher[]' id='"+("P_"+data[a]['ID']+"_val")+"' class='checkbox' value='"+data[a]['pub_name']+"'>"+data[a]['pub_name']+"</label></div>";
+					var publicators = "<option value='"+("P_"+data[a]['ID'])+"'>"+data[a]['pub_name']+"</option>";
+					$("#select_pub").append(select);
+					$("#publicators").append(publicators);
+				}
+			}
+		})
+	});
+	$(document).ready(function(){
+		$("#unit").change(function(){
+			var unit = $("#unit").val();
+			console.log(unit);
+			if (unit == "area") {
+				$("#area").css("display","block");
+				$("#lines").css("display","none");
+				$("#words").css("display","none");
+				$("#extra_rate1").css("display","none");
+				$("extra_cost").css("display","none");
+				$("#rate_unit").text("per sq.cm.");
+				$("#rate_unit2").css("display","none");
+			}else if(unit == "lines"){
+				$("#area").css("display","none");
+				$("#lines").css("display","block");
+				$("#words").css("display","none");
+				$("#rate_unit").text("per line");
+				$("#rate_unit2").text("per line");
+				$("extra_cost").css("display","block");
+			}
+			else if(unit == "words"){
+				$("#area").css("display","none");
+				$("#lines").css("display","none");
+				$("#words").css("display","block");
+				$("#rate_unit").text("per word");
+				$("#rate_unit2").text("per word");
+				$("extra_cost").css("display","block");
+			}else{
+
+				$("#area").css("display","none");
+				$("#lines").css("display","none");
+				$("#words").css("display","none");
+				$("#rate_unit").text("");
+				$("#rate_unit2").text("");
+				alert("Please Select Size Unit");
+			}
+		});
+	});
+</script>
 </html>
